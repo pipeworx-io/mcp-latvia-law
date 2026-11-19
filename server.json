@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.pipeworx-io/latvia-law",
+  "title": "Latvia Law",
+  "description": "Latvia law -- Likumi.lv, the legal-acts portal run by the official publisher Latvijas Vēstnesis.…",
+  "version": "0.1.0",
+  "websiteUrl": "https://pipeworx.io/packs/latvia-law",
+  "repository": {
+    "url": "https://github.com/pipeworx-io/mcp-latvia-law",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://gateway.pipeworx.io/latvia-law/mcp"
+    }
+  ]
+}

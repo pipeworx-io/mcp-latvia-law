@@ -1,0 +1,50 @@
+[
+  {
+    "name": "lv_law_search",
+    "description": "Search Latvian national legislation (laws, Cabinet regulations, orders and other acts on Likumi.lv) by title words in Latvian, e.g. \"Fizisko personu datu apstrādes likums\" or \"darba likums\". By default only acts in force or not yet in force are returned (set include_repealed=true to add acts that lost force). Returns id, title, status, issuer, type, adoption and in-force dates, Latvijas Vēstnesis publication, and a link; 20 per page, use page to continue. Pair with lv_law_get for the text.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Latvian title words, e.g. \"darba likums\" or \"datu apstrādes\""
+        },
+        "include_repealed": {
+          "type": "boolean",
+          "description": "Also return acts that have lost force (default false)"
+        },
+        "page": {
+          "type": "number",
+          "description": "Page number, 1-based (default 1; 20 per page)"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "lv_law_get",
+    "description": "Fetch one Latvian legal act by id from lv_law_search (e.g. \"300099\" for the Personal Data Processing Law). Returns title, status, issuer, type, adoption and in-force dates, Latvijas Vēstnesis publication reference, and the current consolidated text in Latvian. Pass article (e.g. \"3\" or \"16_1\" for article 16 superscript 1) for one article only; without it the text is capped at max_chars with a contents list. The consolidated text is informative: the official publication prevails.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Numeric act id from lv_law_search, e.g. \"300099\""
+        },
+        "article": {
+          "type": "string",
+          "description": "Article (pants) number, e.g. \"3\", \"16_1\" or \"16.1\" for article 16 superscript 1"
+        },
+        "max_chars": {
+          "type": "number",
+          "description": "Cap on returned text when no article is given (default 20000, max 100000)"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+]
